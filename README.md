@@ -1,20 +1,10 @@
 This shows an issue with static linking the Swift stdlib with a non-trivial case.
 
-After cloning the repository:
+There are two shell scripts to build the files either statically or dynamically linking Foundation (`build_static.sh` and `build_dynamic.sh`, respectively).
 
-```bash
-mkdir -p build && cd build
-cmake ../ -G Ninja -DCMAKE_INSTALL_PREFIX=./install && ninja install
+Once built, you can go to either build directory and run the test target:
 ```
-
-Once built, make sure that the install directory is in the `LD_LIBRARY_PATH`:
-```bash
-export LD_LIBRARY_PATH=./install:$LD_LIBRARY_PATH
-```
-
-Then run the test target:
-```
-./install/StaticLinkingTests
+./build_static/StaticLinkingTests
 ```
 
 When running with LLDB attached, it should produce this output:
